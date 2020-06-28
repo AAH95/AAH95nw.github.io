@@ -1,0 +1,65 @@
+$primary-color: #444; // can change colors here
+$secondary-color: #1100adfd; // can change colors here
+$show-home-image: true;
+$home-image: url(/dist/background.jpg.jpg);
+/*$home-image: url(/dist/img/click.jpg);  if i have to put my own click on website   */
+$background-opacity: 0.3;
+/*IF OVERLAY NEEDS TO BE FIXED CHANGE THE VALUE */
+
+@mixin easeOut {
+  transition: all 0.5s ease-out;
+}
+@mixin background {
+  @if $show-home-image {
+    &#bg-img {
+      background: $home-image;
+      background-attachment: fixed;
+      background-size: cover;
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: rgba($primary-color, $background-opacity);
+      }
+    }
+  }
+}
+
+// set text color
+@function set-text-color($color) {
+  @if (lightness($color) > 40) {
+    @return #000000;
+  } @else {
+    @return #fff;
+  }
+}
+
+// MEDIA QUERY MIXINS
+
+@mixin mediaSm {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin mediaMd {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaLg {
+  @media screen and (min-width: 769px) and (max-width: 1170px) {
+    @content;
+  }
+}
+
+@mixin mediaXl {
+  @media screen and (min-width: 1171px) {
+    @content;
+  }
+}
